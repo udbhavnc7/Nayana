@@ -1,0 +1,256 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Syne:wght@600;700&family=DM+Mono&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =====================================================
+   BEIGE THEME — warm cream, fully readable
+   ===================================================== */
+:root {
+  color-scheme: light;
+  --bg-deep:            #eedfcc;
+  --panel-bg:           rgba(238, 223, 204, 0.95);
+  --panel-elevated-bg:  #eedfcc;
+  --border-color:       rgba(0, 0, 0, 0.18);
+  --medical-cyan:       #1e3a8a;
+  --stable-green:       #064e3b;
+  --emergency-red:      #7f1d1d;
+  --warning-amber:      #78350f;
+  --text-primary:       #000000;
+  --text-muted:         #1a1a1a;
+}
+
+/* Night mode */
+[data-theme='night'] {
+  --bg-deep:          #eedfcc;
+  --panel-bg:         rgba(238, 223, 204, 0.95);
+  --panel-elevated-bg:  #eedfcc;
+  --border-color:     rgba(0, 0, 0, 0.18);
+  --medical-cyan:     #1e3a8a;
+  --stable-green:     #064e3b;
+  --warning-amber:    #78350f;
+  --emergency-red:    #7f1d1d;
+  --text-primary:     #000000;
+  --text-muted:       #1a1a1a;
+}
+
+/* =====================================================
+   BASE
+   ===================================================== */
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body, #root {
+  margin: 0;
+  min-height: 100%;
+  background: #eedfcc !important;
+  color: #000000 !important;
+  font-family: 'Inter', sans-serif;
+}
+
+body { overflow: hidden; }
+
+/* =====================================================
+   FORCE ALL TEXT TO DARK — blanket override
+   All the JSX uses text-white/* classes from dark-mode era.
+   We remap every opacity variant to dark-on-beige equivalents.
+   ===================================================== */
+
+/* text-white and all opacity variants → black */
+[class*="text-white"] {
+  color: #000000 !important;
+}
+
+/* More specific overrides for muted/secondary variants */
+.text-white\/20, .text-white\/\[0\.2\]   { color: rgba(0,0,0,0.25) !important; }
+.text-white\/30, .text-white\/\[0\.3\]   { color: rgba(0,0,0,0.38) !important; }
+.text-white\/35, .text-white\/\[0\.35\]  { color: rgba(0,0,0,0.45) !important; }
+.text-white\/40, .text-white\/\[0\.4\]   { color: rgba(0,0,0,0.52) !important; }
+.text-white\/45, .text-white\/\[0\.45\]  { color: rgba(0,0,0,0.58) !important; }
+.text-white\/55, .text-white\/\[0\.55\]  { color: rgba(0,0,0,0.68) !important; }
+.text-white\/70, .text-white\/\[0\.7\]   { color: rgba(0,0,0,0.80) !important; }
+.text-white\/75, .text-white\/\[0\.75\]  { color: rgba(0,0,0,0.85) !important; }
+.text-white\/80, .text-white\/\[0\.8\]   { color: rgba(0,0,0,0.90) !important; }
+
+/* text-[#0d0d0d] used inline in active lang button */
+.text-\[\#0d0d0d\] { color: #000000 !important; }
+
+/* bg-white/* → warm cream tint */
+[class*="bg-white\/"] {
+  background-color: rgba(139, 110, 80, 0.07) !important;
+}
+.bg-white\/\[0\.03\]  { background-color: rgba(139,110,80,0.03) !important; }
+.bg-white\/\[0\.04\]  { background-color: rgba(139,110,80,0.04) !important; }
+.bg-white\/\[0\.05\]  { background-color: rgba(139,110,80,0.06) !important; }
+.bg-white\/5          { background-color: rgba(139,110,80,0.05) !important; }
+.bg-white\/10         { background-color: rgba(139,110,80,0.08) !important; }
+.bg-white\/20         { background-color: rgba(139,110,80,0.12) !important; }
+
+/* border-white/* → subtle warm border */
+[class*="border-white\/"] {
+  border-color: rgba(139, 110, 80, 0.18) !important;
+}
+.border-white\/\[0\.06\] { border-color: rgba(139,110,80,0.10) !important; }
+.border-white\/\[0\.08\] { border-color: rgba(139,110,80,0.13) !important; }
+.border-white\/\[0\.15\] { border-color: rgba(139,110,80,0.20) !important; }
+.border-white\/10        { border-color: rgba(139,110,80,0.16) !important; }
+.border-white\/20        { border-color: rgba(139,110,80,0.22) !important; }
+
+/* hover:bg-white/* */
+.hover\:bg-white\/5:hover  { background-color: rgba(139,110,80,0.07) !important; }
+.hover\:bg-white\/10:hover { background-color: rgba(139,110,80,0.10) !important; }
+.hover\:bg-white\/20:hover { background-color: rgba(139,110,80,0.14) !important; }
+
+/* hover:text-white */
+.hover\:text-white:hover { color: var(--text-primary) !important; }
+
+/* active bg-white used in lang button */
+.bg-white { background-color: #FFFDF8 !important; }
+.text-\[\#0d0d0d\] { color: var(--text-primary) !important; }
+
+/* =====================================================
+   ACCENT COLOURS
+   ===================================================== */
+.text-medical       { color: var(--medical-cyan)  !important; }
+.text-stable-green,
+.text-social        { color: var(--stable-green)  !important; }
+.text-emergency     { color: var(--emergency-red) !important; }
+.text-warning       { color: var(--warning-amber) !important; }
+
+.bg-medical         { background-color: var(--medical-cyan)  !important; color: #fff !important; }
+.bg-stable-green,
+.bg-social          { background-color: var(--stable-green)  !important; color: #fff !important; }
+.bg-emergency       { background-color: var(--emergency-red) !important; color: #fff !important; }
+.bg-warning         { background-color: var(--warning-amber) !important; color: #fff !important; }
+.bg-medical *,
+.bg-stable-green *,
+.bg-social *,
+.bg-emergency *,
+.bg-warning *       { color: #fff !important; }
+
+/* Tinted accent backgrounds */
+.bg-medical\/5   { background-color: rgba(37,99,235,0.05)  !important; }
+.bg-medical\/10  { background-color: rgba(37,99,235,0.08)  !important; }
+.bg-medical\/15  { background-color: rgba(37,99,235,0.12)  !important; }
+.bg-social\/10   { background-color: rgba(22,163,74,0.08)  !important; }
+.bg-stable-green\/10 { background-color: rgba(22,163,74,0.08) !important; }
+.bg-emergency\/10 { background-color: rgba(220,38,38,0.08) !important; }
+
+.border-medical        { border-color: var(--medical-cyan)  !important; }
+.border-stable-green,
+.border-social         { border-color: var(--stable-green)  !important; }
+.border-emergency      { border-color: var(--emergency-red) !important; }
+.border-warning        { border-color: var(--warning-amber) !important; }
+
+.border-medical\/20,
+.border-medical\/25,
+.border-medical\/30,
+.border-medical\/35  { border-color: rgba(37,99,235,0.22) !important; }
+.border-social\/20   { border-color: rgba(22,163,74,0.22)  !important; }
+.border-social\/25   { border-color: rgba(22,163,74,0.26)  !important; }
+
+/* Hardcoded hex accent used in TopBar */
+.border-\[\#00d4ff\]\/30 { border-color: rgba(37,99,235,0.30) !important; }
+.bg-\[\#00d4ff\]\/10     { background-color: rgba(37,99,235,0.08) !important; }
+.text-\[\#00d4ff\]        { color: var(--medical-cyan) !important; }
+.bg-\[\#00d4ff\]          { background-color: var(--medical-cyan) !important; }
+
+/* =====================================================
+   PANELS
+   ===================================================== */
+.panel {
+  border-radius: 24px;
+  border: 1px solid var(--border-color);
+  background: var(--panel-bg) !important;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: 0 4px 20px rgba(139,110,80,0.07);
+  transition: all 0.25s cubic-bezier(0.4,0,0.2,1);
+}
+
+.panel-elevated {
+  border-radius: 24px;
+  border: 1px solid var(--border-color);
+  background: var(--panel-elevated-bg) !important;
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  box-shadow: 0 12px 40px rgba(139,110,80,0.10), inset 0 1px 1px rgba(255,255,255,0.9);
+  transition: all 0.25s cubic-bezier(0.4,0,0.2,1);
+}
+
+/* =====================================================
+   INPUTS
+   ===================================================== */
+input, textarea, select {
+  background-color: rgba(255, 255, 255, 0.4) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-color) !important;
+}
+input::placeholder, textarea::placeholder {
+  color: var(--text-muted) !important;
+}
+[class*="placeholder-white"]::placeholder {
+  color: rgba(0, 0, 0, 0.45) !important;
+}
+
+/* =====================================================
+   NEURAL BACKGROUND
+   ===================================================== */
+.neural-bg {
+  background: radial-gradient(circle at 50% 50%, #dfcbaf 0%, #d4ba98 100%) !important;
+}
+
+/* =====================================================
+   BACK BUTTON
+   ===================================================== */
+#btn-back {
+  background-color: rgba(0, 0, 0, 0.1) !important;
+  color: #000000 !important;
+  border: 1px solid rgba(0, 0, 0, 0.18) !important;
+}
+#btn-back * { color: #000000 !important; }
+
+/* =====================================================
+   QUADRANT headings keep their colour
+   ===================================================== */
+[id^='quadrant-'] h3,
+[id^='quadrant-'] h3 * { color: inherit !important; }
+
+/* =====================================================
+   TYPOGRAPHY
+   ===================================================== */
+.font-display { font-family: 'Syne', sans-serif; }
+.font-mono    { font-family: 'DM Mono', monospace; }
+.text-balance { text-wrap: balance; }
+
+button, select, input, textarea { font: inherit; }
+button { cursor: pointer; }
+
+/* =====================================================
+   SCROLLBAR
+   ===================================================== */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-deep); }
+::-webkit-scrollbar-thumb { background: rgba(139,110,80,0.2); border-radius: 4px; }
+
+@layer utilities {
+  .scrollbar-slim::-webkit-scrollbar { width: 3px; }
+  .scrollbar-slim::-webkit-scrollbar-thumb { background: rgba(139,110,80,0.15); border-radius: 99px; }
+  .scrollbar-slim:hover::-webkit-scrollbar-thumb { background: rgba(139,110,80,0.28); }
+}
+
+/* =====================================================
+   ANIMATIONS
+   ===================================================== */
+@keyframes spin      { to { transform: rotate(360deg); } }
+@keyframes pulseSoft { 0%,100%{ opacity:1; } 50%{ opacity:0.35; } }
+@keyframes pulseSOS  {
+  0%,100% { background-color: rgba(220,38,38,0.07); border-color: rgba(220,38,38,0.28); }
+  50%     { background-color: rgba(220,38,38,0.18); border-color: rgba(220,38,38,0.55); box-shadow: 0 0 30px rgba(220,38,38,0.12); }
+}
+
+@layer utilities {
+  .animate-pulseSoft { animation: pulseSoft 1.8s ease-in-out infinite; }
+  .animate-spin-slow { animation: spin 0.9s linear infinite; }
+  .animate-pulse-sos { animation: pulseSOS 1s ease-in-out infinite; }
+}

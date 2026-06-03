@@ -1,0 +1,60 @@
+version: "2"
+type: frontend
+tech_stack:
+  - JavaScript
+  - React
+  - Vite
+  - Tailwind CSS / Vanilla CSS
+  - MediaPipe (Gaze Engine)
+  - BroadcastChannel (P2P Sync)
+routes:
+  - path: /
+    file: src/PatientApp.jsx
+    auth_required: false
+    description: Patient Bedside Dashboard with Gaze tracking
+  - path: /caretaker/dashboard
+    file: src/components/Pages/CaregiverHubPage.jsx
+    auth_required: false
+    description: Nursing Station Command Center (Nursing Station)
+features:
+  - name: Gaze Tracking
+    description: Control UI using iris-tracking and dwell-timers
+    files:
+      - src/components/Tracking/GazeEngine.jsx
+      - src/hooks/useGazeTracking.js
+    entry_route: /
+    user_interactions:
+      - Look at quadrants to navigate
+      - Look at phrase chips to select communication
+      - Dwell for selection (1.8s)
+    api_calls: []
+    auth_required: false
+  - name: Nursing Station Grid
+    description: Multi-patient ward monitoring with real-time vitals
+    files:
+      - src/components/Pages/CaregiverHubPage.jsx
+      - src/components/Clinical/BedsideCard.jsx
+    entry_route: /caretaker/dashboard
+    user_interactions:
+      - View multi-patient bedside status cards
+      - Listen for SOS Auditory Alarm pulse
+      - Click a card to enter single-patient detail mode
+    api_calls: []
+    auth_required: false
+  - name: Clinical AI
+    description: Real-time patient risk assessment and handover report generation
+    files:
+      - src/hooks/useClinicalAI.js
+      - src/services/gemini.js
+    entry_route: /
+    user_interactions:
+      - Generate handover reports via Gemini AI
+      - View live risk scores based on patient interactions
+    api_calls:
+      - method: POST
+        endpoint: /api/gemini (proxied)
+    auth_required: false
+known_limitations:
+  - issue: P2P Sync is tab-local (BroadcastChannel)
+    location: src/components/Pages/CaregiverHubPage.jsx
+    impact: Cloud-based cross-device sync not yet implemented in prototype
