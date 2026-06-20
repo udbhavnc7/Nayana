@@ -98,8 +98,8 @@ graph TD
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/sharonjoseph12/Nayana_codex.git
-   cd Nayana_codex
+   git clone https://github.com/udbhavnc7/Nayana.git
+   cd Nayana
    ```
 
 2. **Install dependencies**
