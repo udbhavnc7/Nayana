@@ -86,9 +86,9 @@ export default function LoginPage({ onLogin }) {
   }
 
   return (
-    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-base">
+    <div className="relative flex min-h-screen items-center justify-center overflow-x-hidden overflow-y-auto bg-base">
       {/* Ambient background glow */}
-      <div className="pointer-events-none absolute inset-0">
+      <div className="pointer-events-none fixed inset-0">
         <div className="absolute left-1/4 top-1/4 h-[500px] w-[500px] rounded-full bg-medical/[0.06] blur-[120px]" />
         <div className="absolute bottom-1/4 right-1/4 h-[400px] w-[400px] rounded-full bg-personal/[0.05] blur-[100px]" />
         <div className="absolute right-1/3 top-1/2 h-[300px] w-[300px] rounded-full bg-social/[0.04] blur-[90px]" />
