@@ -1,22 +1,10 @@
 **NAYANA**
 
-
 # Nayana (नयन)
-### AI-Powered Clinical Vision & Communication Platform
-
-
+### AI-Powered Clinical Vision & Communication Platform 
 **Empowering clinical communication through gaze intelligence.**
 
-
 ## 👁️ Overview
-
-=======
-# Nayana (नयन)
-### AI-Powered Clinical Vision & Communication Platform
-## 👁️ Overview
-
-**Empowering clinical communication through gaze intelligence.**
-
 
 **Nayana** (meaning "Eye" or "Vision") is a high-fidelity clinical platform designed for patients with limited mobility or speech impairments. By leveraging state-of-the-art **Gaze Tracking AI**, Nayana transforms eye movements into meaningful communication and provides clinicians with a real-time telemetry dashboard for remote monitoring.
 
